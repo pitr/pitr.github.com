@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+  <head>
+    <title>js1k #2, xmas edition</title>
+    <meta charset="utf-8" />
+    <style type="text/css" media="screen">
+      body {
+        font-family: "trebuchet ms", "lucida grande", "Segoe UI", arial, verdana, "lucida sans unicode", tahoma, sans-serif;
+        background-color: #bccad9;
+        background-image: url(/static/images/bg.png);
+      }
+      p {
+        font-size: 16px;
+        color: #232323;
+        text-shadow: 0 1px 1px #fff;
+        line-height: 2em;
+        width: 600px;
+      }
+    </style>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-6389050-3']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      //]]>
+    </script>
+  </head>
+  <body>
+    <p>
+      This was supposed to be an entry for <a href="http://js1k.com/2010-xmas/" target="_blank">js1k xmas</a>, however, I ended up forgetting about it and writing something else completely.
+    </p>
+    <p>
+      Play (left, right) until you lose.
+    </p>
+    <canvas></canvas>
+    <script>
+      var c = document.getElementsByTagName('canvas')[0];
+      var b = document.body;
+      var a = c.getContext('2d');
+    </script>
+    <script>
+      // abbreviate canvas methods
+      for($ in a)a[$[0]+($[6]||'')]=a[$];
+      var END=1;
+      var BG='#235';
+      var FG='#fff';
+      var F2='#a44';
+      var W=H=500;    // width,height
+      var S=10;       // size of cell
+      var i=200,j=300;
+      var x=[i,j,i,j]
+      var y=[i,j,j,i]
+      var V={};       // visited
+      var D=L=WIN=0;      // dead, left, winner
+
+      var di=[1,3,2,0];
+
+      var P=0; // next position to read in genome
+      var AI=[[],[],[],[]]; //genome
+      var ALPHA="lr.";
+      // R   - random left/right
+      // l/r - left/right
+      // .   - nothing
+
+      onkeydown=function(e){
+        // if this is a keydown event, new_val gets the value 4, otherwise 0
+        // new_val=e.type[5]?4:0;
+        e=e.keyCode;
+
+        // give jump a truthy value if up was pressed, falsy if up was released
+        // jump=e^38?jump:new_val;
+
+        // similar for speed_x, inverting new_val if left is pressed
+        di[0]+=e^37?e^39?0:-1:1
+        AI[0][P]=e^37?e^39?'.':'r':'l'
+      }
+
+      function rand(max) {
+        return Math.floor(Math.random()*max);
+      }
+      function step(n,x,y,dir) {
+        WIN=n // mark last to step as winner
+        // loser
+        if(V[x*W+y]||x<0||x>W||y<0||y>H)
+          L+=(D=D?D:n+1,1<<n);
+        else{
+          // make the step
+          V[x*W+y]=1;
+          a.fillStyle = !i?F2:FG;
+          a.fillRect(x,y,S,S);
+        }
+      }
+      function loop() {
+        i=4;
+        while(i--){
+          // change direction if needed
+          if(i)switch(AI[i][P%AI[i].length]){
+            case 'l': di[i]++; break;
+            case 'r': di[i]--; break;
+          } else if(!AI[i][P])AI[i][P]='.'
+          // make a move
+          switch((di[i]%4+4)%4) {
+            case 0: x[i]+=S; break;
+            case 1: y[i]-=S; break;
+            case 2: x[i]-=S; break;
+            case 3: y[i]+=S; break;
+          }
+          if(!(L&1<<i))
+            step(i,x[i],y[i],di[i]);
+        }
+        P++
+
+        if(L<15)
+          setTimeout(loop, 40);// loop again
+        else if(WIN)END=0
+        else {
+          D--
+          A=AI[WIN]
+          i=A.length
+          AI[D]=[]
+          while(i--)AI[D].unshift(AI[WIN][i])
+          // cross
+          A=AI[rand(4)]
+          B=AI[rand(4)]
+          if(AI[WIN]!=B)B[rand(B.length)] = A[rand(A.length)]
+          // mutate
+          if(AI[WIN]!=A)A.splice(rand(B.length-1),0,ALPHA[rand(ALPHA.length)]);
+
+          console.log(''+D+' lost, new: '+AI[D].join(''));
+          console.log(''+WIN+' won: '+AI[WIN].join(''));
+
+          i=200;j=300;
+          x=[i,j,i,j]
+          y=[i,j,j,i]
+          V={};       // visited
+          D=L=WIN=0;      // dead, left, winner
+          di=[1,3,2,0];
+          P=0;
+
+          a.fillStyle = BG;
+          a.fillRect(0,0,W,H);
+
+          if(END)setTimeout(loop, 30);
+        }
+      }
+
+      c.width=W;
+      c.height=H;
+      a.fillStyle = BG;
+      a.fillRect(0,0,W,H);
+
+      loop();
+    </script>
+  </body>
+</html>
