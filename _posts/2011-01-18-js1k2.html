@@ -3,19 +3,23 @@ layout: default
 title: js1k 2, xmas edition
 ---
 
-<p>
-  This was supposed to be an entry for <a href="http://js1k.com/2010-xmas/" target="_blank">js1k xmas</a>, however, I ended up forgetting about it and writing something else completely.
-</p>
-<p>
-  Play (left, right) until you lose.
-</p>
-<canvas></canvas>
-<script>
+<section>
+  <h2>{{ post.title }}</h2>
+
+  <p>
+    This was supposed to be an entry for <a href="http://js1k.com/2010-xmas/" target="_blank">js1k xmas</a>.
+  </p>
+  <p>
+    Play (left, right) until you lose.
+  </p>
+
+  <canvas></canvas>
+</section>
+
+<script type="text/javascript" charset="utf-8">
   var c = document.getElementsByTagName('canvas')[0];
   var b = document.body;
   var a = c.getContext('2d');
-</script>
-<script>
   // abbreviate canvas methods
   for($ in a)a[$[0]+($[6]||'')]=a[$];
   var END=1;
