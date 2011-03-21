@@ -15,8 +15,58 @@ title: js1k 3, oregon trail
   <p>
     Note: if you start in the middle of a wall, wait for rock monster to free you.
   </p>
+
+  <div id='game'></div>
+
+  <p>
+    Source code, minified:
+  </p>
+
+  {% highlight javascript %}
+  // SHIM
+  var b = document.getElementById('game')
+  // fix bug in webkit: http://qfox.nl/weblog/218
+  document.body.clientWidth;
+
+  // CODE ITSELF
+  A=Math,H=100,p=[C=I=J=50,50],X=0,N=M=E=[],w=30,h=15,D=10
+  R=function(m){return~~(A.random()*m)}
+  o=function(p,x,y){return p[0]==x&&p[1]==y?1:0}
+  onkeydown=function(e){
+  e=e.keyCode
+  if(e>=37&&e<=40){q=p.slice()
+  q[0]+=(e^37?e^39?0:1:-1)
+  q[1]+=(e^38?e^40?0:1:-1)
+  if(++C%2){M[J][I]=0
+  I+=R(3)-1
+  J+=R(3)-1
+  M[J][I]=1}
+  p=!M[q[1]][q[0]]?q:p
+  for(k=0;k<D;k++)if(o(E[k],p[0],p[1])){X+=k
+  do{E[k]=[R(H),R(H)]}while(M[E[k][1]][E[k][0]])}
+  redraw()
+  return false}}
+  redraw=function(){S='<pre>Exp: '+X
+  for(i=A.max(p[1]-~~(h/2),0);i<p[1]+~~(h/2);i++){S+='\n'
+  for(j=A.max(p[0]-~~(w/2),0);j<p[0]+~~(w/2);j++){e=' '
+  for(k=0;k<D;k++)if(o(E[k],j,i))e=k
+  S+=!M[i]?e:M[i][j]?'#':o(p,j,i)?'@':e}}
+  b.innerHTML=S}
+  for(i=0;i<H;i++){M[i]=[]
+  for(j=0;j<H;j++){M[i][j]=(R(100)<40)?1:0}}
+  for(i=0;i<H;i++){M[i][0]=1
+  M[i][H-1]=1;M[0][i]=1;M[H-1][i]=1}
+  E=[]
+  for(k=0;k<D;k++){do{E[k]=[R(H),R(H)]}while(M[E[k][1]][E[k][0]])
+  N=[]
+  for(i=0;i<H;i++){N[i]=[]
+  for(j=0;j<H;j++){s=0
+  for(n=-1;n<2;n++)for(m=-1;m<2;m++)s+=!M[i+n]?1:(mn=M[i+n][j+m])?1:mn!=!1
+  N[i][j]=s>5||(k<5&&!s)}}
+  M=N}
+  redraw()
+  {% endhighlight %}
 </section>
-<div id='game'></div>
 
 <style type="text/css" media="screen">
   #game pre {
