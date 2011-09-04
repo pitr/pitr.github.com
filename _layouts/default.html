@@ -99,6 +99,9 @@
           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
+        var links = document.getElementsByTagName('a')
+        var trackEvent = function(e){ _gaq.push(['_trackEvent', 'click', action.target.innerText]) }
+        for(var i = 0; i < links.length; ++i) links[i].addEventListener("click", trackEvent, false)
       //]]>
     </script>
   </head>
