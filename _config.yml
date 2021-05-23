@@ -1,4 +1,2 @@
-auto: true
-permalink: /:title
-server: true
-pygments: true
+permalink: /:year-:month-:day-:title
+highlighter: true
