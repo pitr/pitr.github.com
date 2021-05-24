@@ -1,11 +1,13 @@
 ---
 layout: default
-title: Spot instances for personal servers.
+title: Spot instances for personal servers
 ---
 
 # {{ page.title }}
 
 *{{ page.date | date_to_string }} on [Peter Vernigorov's blog](/)*
+
+*Edit: expanded on instance scores/termination*
 
 Clickbait title: Save 70% on personal servers using one weird trick.
 
@@ -40,6 +42,12 @@ Running on spot trains one to expect terminations. After all, any instance, be i
 Additional benefit of being prepared for terminations is to be able to run instances only when needed. I have a beefy instance dedicated to hosting a Minecraft server, and it's only up when I need it. If I forget to turn it off, it automatically goes down at midnight.
 
 This is where [spot.io](https://spot.io/) comes in. They help manage spot instances by foreseeing terminations based on spot market shortages, shutting the instance down safely, finding an instance type and an availability zone with better score, and starting your instance up again. They can manage 20 instances for free, which is enough for most people.
+
+Each instance type in every availability zone gets a score. In case of a termination, spot.io will use a better scoring instance/AZ to boot the instance back up. I use `t(2,3,3a).(micro,small)` instances. In case of low scores across all instance types/AZs, there is an option to automatically go to on-demand until spot market improves.
+
+![Spot Market Scoring](/images/spot-market.png)
+
+In my experience, instance recycling takes about 5 minutes, which even with a daily termination would be sufficient for most personal project.
 
 ## Root Volume persistence
 
