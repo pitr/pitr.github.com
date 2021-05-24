@@ -122,3 +122,7 @@ There are small additional costs associated with using spot.io:
 - EBS snapshots - spot.io periodically creates a snapshot of EBS root volumes, which ends up costing additional ~50% of their normal cost. For 2 8GB root volumes this ends up being ~$0.87 in my region.
 
 As can be seen, this is nowhere near close to savings from one instance alone, but worth being aware of.
+
+***
+
+Discussion: [https://lobste.rs/s/ix7ozd/spot_instances_for_personal_servers](https://lobste.rs/s/ix7ozd/spot_instances_for_personal_servers)
