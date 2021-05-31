@@ -125,4 +125,4 @@ As can be seen, this is nowhere near close to savings from one instance alone, b
 
 ***
 
-Discussion: [https://lobste.rs/s/ix7ozd/spot_instances_for_personal_servers](https://lobste.rs/s/ix7ozd/spot_instances_for_personal_servers)
+Discussion: [https://lobste.rs/s/ix7ozd](https://lobste.rs/s/ix7ozd)

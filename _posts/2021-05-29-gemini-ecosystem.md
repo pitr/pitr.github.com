@@ -65,24 +65,23 @@ The first challenge was links in text. Gemtext allows text OR link per line, but
 
 ```go
 type Links struct {
-	buf strings.Builder
+    buf strings.Builder
 }
 
 func NewLinks() *Links {
-	return &Links{}
+    return &Links{}
 }
 
 func (f *Links) Add(name, href string) {
-	href = strings.TrimSpace(href)
-	f.buf.WriteString(fmt.Sprintf("=> %s %s\n", href, name))
+    f.buf.WriteString(fmt.Sprintf("=> %s %s\n", href, name))
 }
 
 func (f *Links) String() string {
-	return f.buf.String()
+    return f.buf.String()
 }
 
 func (f *Links) Reset() {
-	f.buf.Reset()
+    f.buf.Reset()
 }
 ```
 
@@ -110,16 +109,16 @@ On a related note, a [few other proxy capsules](https://portal.mozz.us/gemini/ge
 
 	```
 auth:
-  htpasswd:
-    path: /.htpasswd
+     htpasswd:
+       path: /.htpasswd
 notifications:
   events:
-    includereferences: true
-  endpoints:
-    - url: http://172.17.0.1:8080/event
-      ignore:
-        actions:
-           - pull
+       includereferences: true
+     endpoints:
+       - url: http://172.17.0.1:8080/event
+         ignore:
+           actions:
+             - pull
 	```
 
 2. The tiny Go server parses the webhook event, makes sure that the $USER pushed the new image to `/$USER/$APP`, an app that he owns. Then it runs `docker stop $APP && docker rm $APP` (to stop the previous version), and `docker run -d --restart=always --name $APP $IMAGE`. There are a few more arguments to limit cpu/memory resources and to mount a volume.
@@ -130,15 +129,15 @@ notifications:
 
 	```
 stream {
-    map $ssl_preread_server_name $upstream {
-        include /etc/nginx/stream.d/*.conf;
-    }
+     map $ssl_preread_server_name $upstream {
+       include /etc/nginx/stream.d/*.conf;
+     }
 
-    server {
-        listen      1965;
-        proxy_pass  $upstream;
-        ssl_preread on;
-    }
+     server {
+       listen      1965;
+       proxy_pass  $upstream;
+       ssl_preread on;
+     }
 }
 	```
 
@@ -151,3 +150,7 @@ stream {
 ## Summary
 
 There were a few smaller projects I built in the Gemini universe that I won't go into, as this article is long enough. Overall I enjoyed being part of the community and building projects that try to solve real problems.
+
+***
+
+Discussion: [https://lobste.rs/s/rweq1d](https://lobste.rs/s/rweq1d)
