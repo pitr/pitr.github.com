@@ -10,13 +10,11 @@
   <title>{{ page.title }}</title>
   <style type="text/css" media="screen">
     html{font-family:helvetica,arial,sans-serif}
-    body{max-width:640px;margin:auto;padding:1em}
+    body{max-width:640px;margin:auto;padding:1em;line-height:1.5}
     h2{border-bottom: 1px solid #eaecef}
-    section{line-height:1.5}
-    section.posts .post .date{color:#aaa}
-    section img, section video{display:block;margin:0 auto;max-width:100%;box-shadow:0 0 10px #eee}
+    .date{color:#aaa}
+    img, video{display:block;margin:0 auto;max-width:100%;box-shadow:0 0 10px #eee}
     footer{margin-top:2rem;text-align:center;font-size:.8rem;color:#aaa}
-    blockquote{border-left:5px solid #bbb;background-color:#eee;padding:0 1rem;margin-left:calc(-1rem - 5px);margin-right:-1rem}
     ul li:not(:last-child){margin-bottom:1rem}
     pre.highlight {
       background-color: #eee;
@@ -28,9 +26,7 @@
   </style>
 </head>
 <main>
-  <section>
-    {{ content }}
-  </section>
+  {{ content }}
   <footer>
     <a href='/'>home</a> |
     <a target='_blank' href='https://github.com/pitr'>github</a> |
