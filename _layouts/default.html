@@ -10,18 +10,21 @@
   <title>{{ page.title }}</title>
   <style type="text/css" media="screen">
     html{font-family:helvetica,arial,sans-serif}
-    body{max-width:640px;margin:auto;padding:1em;line-height:1.5}
+    body{background-color:#fff;color:#24292e;max-width:640px;margin:auto;padding:1em;line-height:1.5}
     h2{border-bottom: 1px solid #eaecef}
     .date{color:#aaa}
+    a{text-decoration:none;color:#0366d6}
+    a:hover{text-decoration:underline}
     img, video{display:block;margin:0 auto;max-width:100%;box-shadow:0 0 10px #eee}
     footer{margin-top:2rem;text-align:center;font-size:.8rem;color:#aaa}
     ul li:not(:last-child){margin-bottom:1rem}
-    pre.highlight {
-      background-color: #eee;
-      padding: .25rem 1rem;
-      margin: 0 -1rem;
-      max-width: 100%;
-      overflow-x: auto;
+    pre.highlight{background-color:#eee;padding:.25rem 1rem;margin:0 -1rem;max-width:100%;overflow-x:auto}
+
+    @media (prefers-color-scheme: dark) {
+      body{background-color:#121212;color:#eee}
+      a{color:#58a6ff}
+      img{filter: brightness(.6) contrast(1.2)}
+      pre.highlight{background-color:#333}
     }
   </style>
 </head>
