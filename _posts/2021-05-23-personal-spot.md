@@ -79,7 +79,7 @@ EOF
 
 `/usr/lib/systemd/system/update-dns.service`
 
-```
+```ini
 [Unit]
 After=network.service
 
@@ -96,7 +96,7 @@ WantedBy=default.target
 
 For managing instances that are up only when needed, I have 2 shell functions:
 
-```
+```bash
 # Fish shell syntax, but can be easily changed to support bash/zsh
 
 function spotstart
