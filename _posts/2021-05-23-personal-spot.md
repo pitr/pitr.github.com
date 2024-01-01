@@ -7,11 +7,15 @@ title: Spot instances for personal servers
 
 *{{ page.date | date_to_string }} on [Peter Vernigorov's blog](/)*
 
-*Edit: expanded on instance scores/termination*
+## 2023 Update
 
-Clickbait title: Save 70% on personal servers using one weird trick.
+I have since moved from AWS to Hetzner as it is significantly cheaper than spot instances on AWS, at least for the workload that I have. 2 instances (`t3.nano` and `t3.medium`) with an EBS volumes were replaced by a single `CAX11` (2x arm64, 4GB RAM).
 
-TLDR; use spot instances for personal projects to save costs, and spot.io to ensure their stability.
+## Summary
+
+Use spot instances for personal projects to save ~70% costs, and spot.io to ensure their stability.
+
+## Why?
 
 There was a recent post on lobste.rs asking ["What are you self hosting?"](https://lobste.rs/s/p4edt5/what_are_you_self_hosting_2021) and while some people prefer to host as little as possible relying on various services, many are running their own servers.
 
