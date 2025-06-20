@@ -129,4 +129,4 @@ As can be seen, this is nowhere near close to savings from one instance alone, b
 
 ***
 
-Discussion: [https://lobste.rs/s/ix7ozd](https://lobste.rs/s/ix7ozd)
+Discussion: [lobste.rs](https://lobste.rs/s/ix7ozd)

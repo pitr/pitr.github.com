@@ -153,4 +153,4 @@ There were a few smaller projects I built in the Gemini universe that I won't go
 
 ***
 
-Discussion: [https://lobste.rs/s/rweq1d](https://lobste.rs/s/rweq1d)
+Discussion: [lobste.rs](https://lobste.rs/s/rweq1d)
